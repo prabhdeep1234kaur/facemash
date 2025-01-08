@@ -5,7 +5,11 @@
  * define references : done
  * load facemesh: done
  * detect functions: done
- * 
+ * drawing utilities: done
+ * load triangulation: done
+ * setup triangle path:  done
+ * setup point drawing method: done
+ * add drawmesh to detect functions: done
  */
 
 import React, {useRef} from 'react';
@@ -13,6 +17,7 @@ import './App.css';
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 import Webcam from 'react-webcam';
+import { drawMesh } from "./utilities";
 
 function App() {
 
@@ -48,8 +53,10 @@ function App() {
       //make detections: network from tensorflow as net: basically from webcam
       const face = await net.estimateFaces(video);
       console.log(face);
-      //get canvas content for drawing
 
+      //get canvas content for drawing
+      const ctx = canvasRef.current.getContext("2d");
+      drawMesh(face, ctx);
 
     }
   }
