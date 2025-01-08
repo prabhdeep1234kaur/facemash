@@ -3,7 +3,7 @@
  * import dependencies: done
  * setup webcam : done
  * define references : done
- * load facemesh
+ * load facemesh: done
  * 
  * 
  */
@@ -16,10 +16,17 @@ import Webcam from 'react-webcam';
 
 function App() {
 
+  //setup references
   const webcamRef = useRef(null); //allows to onscreen components
   const canvasRef = useRef(null);
 
-  
+  //load facemesh: load facemesg model into our app and allows detection
+  const runFacemesh = async() =>{
+    const net = await facemesh.load({
+      inputResolution: {width: 640, height: 480}, scale: 0.8 //how big of a photo will be loaded
+    })
+  }
+
 
   return ( 
 
